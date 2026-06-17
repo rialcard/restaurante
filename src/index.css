@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', sans-serif;
+    background-color: #131313;
+    color: #e4e2e1;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Scrollbar personalizada */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #1f2020;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #444748;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #8e9192;
+  }
+}
+
+@layer components {
+  /* Botón primario: naranja vibrante */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-secondary-container text-on-secondary-container font-display font-bold text-label-bold uppercase tracking-wider rounded-lg transition-all duration-200;
+  }
+  .btn-primary:hover {
+    @apply bg-[#ff6b38] shadow-glow-lg -translate-y-0.5;
+  }
+  .btn-primary:active {
+    @apply translate-y-0 shadow-none;
+  }
+  .btn-primary:disabled {
+    @apply opacity-50 cursor-not-allowed transform-none shadow-none;
+  }
+
+  /* Botón secundario: outline claro */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-transparent border border-on-surface text-on-surface font-display font-bold text-label-bold uppercase tracking-wider rounded-lg transition-all duration-200;
+  }
+  .btn-secondary:hover {
+    @apply bg-surface-container -translate-y-0.5;
+  }
+  .btn-secondary:disabled {
+    @apply opacity-50 cursor-not-allowed transform-none;
+  }
+
+  /* Botón danger: outline rojo */
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 bg-transparent border border-error text-error font-display font-bold text-label-bold uppercase tracking-wider rounded-lg transition-all duration-200;
+  }
+  .btn-danger:hover {
+    @apply bg-error-container -translate-y-0.5;
+  }
+
+  /* Botón ghost: sin fondo ni borde */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 bg-transparent text-on-surface-variant font-body text-body-md rounded-lg transition-all duration-200;
+  }
+  .btn-ghost:hover {
+    @apply bg-surface-container text-on-surface;
+  }
+
+  /* Input estilo industrial */
+  .input-field {
+    @apply w-full px-4 py-3 bg-surface-container-low border border-outline-variant text-on-surface placeholder-outline rounded-lg font-body text-body-md transition-all duration-200 outline-none;
+  }
+  .input-field:focus {
+    @apply border-secondary-container ring-1 ring-secondary-container;
+  }
+
+  /* Label de campo */
+  .field-label {
+    @apply block text-caption text-on-surface-variant uppercase tracking-wider mb-1 font-body;
+  }
+
+  /* Card de menú */
+  .menu-card {
+    @apply bg-surface-container-high rounded-xl overflow-hidden transition-all duration-300 cursor-pointer;
+  }
+  .menu-card:hover {
+    @apply scale-[1.02] shadow-ambient;
+  }
+
+  /* Badge de estado */
+  .badge {
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-caption font-body font-medium;
+  }
+  .badge-confirmada {
+    @apply badge bg-secondary-container/20 text-secondary border border-secondary-container/30;
+  }
+  .badge-pendiente {
+    @apply badge bg-surface-variant text-on-surface border border-outline-variant;
+  }
+  .badge-cancelada {
+    @apply badge bg-error-container/20 text-error border border-error/20;
+  }
+  .badge-activo {
+    @apply badge bg-surface-variant text-primary border border-outline-variant;
+  }
+  .badge-agotado {
+    @apply badge bg-error-container/20 text-error border border-error/30;
+  }
+
+  /* Icono Material Symbols */
+  .icon {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
+  }
+
+  /* Gradiente de imagen (superpuesto sobre fotos) */
+  .img-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent;
+  }
+
+  /* Sombra ambiente para cards elevadas */
+  .card-elevated {
+    @apply bg-surface-container-high rounded-xl border border-outline-variant/50 shadow-ambient;
+  }
+}
+
+@layer utilities {
+  .hover-lift {
+    @apply transition-transform duration-200 hover:-translate-y-1;
+  }
+}

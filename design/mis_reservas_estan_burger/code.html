@@ -1,0 +1,263 @@
+<!DOCTYPE html><html class="dark" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Reserva - Estan Burger</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#2a2a2a",
+                        "secondary-fixed": "#ffdbd0",
+                        "surface-variant": "#353535",
+                        "on-background": "#e4e2e1",
+                        "on-tertiary": "#2f3131",
+                        "error-container": "#93000a",
+                        "surface-dim": "#131313",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "outline": "#8e9192",
+                        "inverse-on-surface": "#303030",
+                        "on-surface": "#e4e2e1",
+                        "on-secondary-fixed-variant": "#852400",
+                        "tertiary-container": "#101212",
+                        "on-secondary-container": "#521300",
+                        "on-primary-fixed": "#1c1b1b",
+                        "surface": "#131313",
+                        "primary": "#c8c6c5",
+                        "tertiary-fixed": "#e2e2e2",
+                        "outline-variant": "#444748",
+                        "secondary": "#ffb59e",
+                        "secondary-container": "#ff571a",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "on-surface-variant": "#c4c7c7",
+                        "tertiary": "#c6c6c7",
+                        "primary-fixed": "#e5e2e1",
+                        "surface-tint": "#c8c6c5",
+                        "surface-bright": "#393939",
+                        "on-primary-container": "#7e7d7d",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "on-tertiary-container": "#7c7d7e",
+                        "surface-container-highest": "#353535",
+                        "on-error": "#690005",
+                        "error": "#ffb4ab",
+                        "inverse-primary": "#5f5e5e",
+                        "surface-container": "#1f2020",
+                        "on-primary": "#313030",
+                        "on-error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#ffb59e",
+                        "on-secondary-fixed": "#3a0b00",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "surface-container-lowest": "#0e0e0e",
+                        "inverse-surface": "#e4e2e1",
+                        "on-secondary": "#5e1700",
+                        "on-primary-fixed-variant": "#474646",
+                        "surface-container-low": "#1b1c1c",
+                        "background": "#131313",
+                        "primary-container": "#121212"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "base": "8px",
+                        "container-margin": "24px",
+                        "section-gap": "80px",
+                        "stack-lg": "32px",
+                        "gutter": "16px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Montserrat"],
+                        "headline-xl": ["Montserrat"],
+                        "title-md": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "caption": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "900" }],
+                        "headline-xl": ["48px", { "lineHeight": "1.2", "fontWeight": "800" }],
+                        "title-md": ["20px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "caption": ["12px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "label-bold": ["14px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .custom-shadow { box-shadow: 0 10px 30px -10px rgba(255, 87, 26, 0.15); }
+        .hover-lift { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .hover-lift:hover { transform: translateY(-2px); box-shadow: 0 15px 40px -10px rgba(255, 87, 26, 0.25); }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dim docked full-width top-0 sticky z-50 shadow-md">
+<div class="flex justify-between items-center px-container-margin py-stack-md w-full max-w-full mx-auto">
+<button class="text-secondary dark:text-secondary-fixed scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-display-lg text-headline-lg-mobile md:text-headline-lg uppercase tracking-tighter text-secondary dark:text-secondary-fixed">Estan Burger</h1>
+<button class="text-secondary dark:text-secondary-fixed scale-95 active:scale-90 transition-transform">
+<img alt="User profile avatar" class="w-8 h-8 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAObaKnk1Fu20ENPMIbHkjRf4KzcDEiLO2QHZDnMZ1qOtL2_w2KGv0peX-R-5cnCPMOFoe1C1ykfsIskgXTsilMiGtIXdJo8J5ewcfdBQ16sJrfujnWxcmOvIcYRjUZfePkDxCC_6TXYh3BT69R8V8X8HY0jM-GTJ-VXxF5qlfniT0qOFdk4yv9SYQ7ITNLz6jKoP_A7pFPF9elmT_DMaCC2XaFpbD4YalDIecV-5gHgthHzxVcd6Qa8DueEPczDMY97_ywP3_o3T8">
+</button>
+</div>
+<!-- Web Nav Cluster (Hidden on mobile) -->
+<nav class="hidden md:flex justify-center gap-8 pb-4">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-secondary transition-colors duration-200 font-label-bold text-label-bold" href="#">Home</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-secondary transition-colors duration-200 font-label-bold text-label-bold" href="#">Menu</a>
+<a class="text-secondary dark:text-secondary-fixed border-b-2 border-secondary font-label-bold text-label-bold" href="#">Book</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-secondary transition-colors duration-200 font-label-bold text-label-bold" href="#">Profile</a>
+</nav>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col lg:flex-row max-w-7xl mx-auto w-full px-container-margin py-stack-lg gap-section-gap">
+<!-- Reservation Form Section -->
+<section class="flex-1 w-full max-w-2xl">
+<h2 class="text-4xl md:text-5xl font-headline-xl text-secondary-fixed mb-stack-lg uppercase tracking-tight">Haz tu Reserva</h2>
+<div class="bg-surface-container-high rounded-xl p-6 md:p-8 custom-shadow">
+<!-- Step 1: Date Selection -->
+<div class="mb-stack-lg">
+<h3 class="font-title-md text-title-md text-secondary-fixed mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+                        Selecciona Fecha
+                    </h3>
+<div class="grid grid-cols-7 gap-2 text-center mb-2 font-caption text-caption text-outline">
+<div class="">L</div><div class="">M</div><div class="">X</div><div class="">J</div><div class="">V</div><div class="">S</div><div class="">D</div>
+</div>
+<div class="grid grid-cols-7 gap-2 text-center">
+<!-- Simulated Calendar Days -->
+<div class="p-2 text-surface-variant">28</div>
+<div class="p-2 text-surface-variant">29</div>
+<div class="p-2 text-surface-variant">30</div>
+<div class="p-2 text-surface-variant">31</div>
+<button class="p-2 rounded-lg bg-surface-variant hover:bg-surface-bright transition-colors font-label-bold text-label-bold">1</button>
+<button class="p-2 rounded-lg bg-surface-variant hover:bg-surface-bright transition-colors font-label-bold text-label-bold">2</button>
+<button class="p-2 rounded-lg bg-secondary-container text-on-secondary-container font-label-bold text-label-bold custom-shadow scale-105">3</button>
+<button class="p-2 rounded-lg bg-surface-variant hover:bg-surface-bright transition-colors font-label-bold text-label-bold">4</button>
+<button class="p-2 rounded-lg bg-surface-variant hover:bg-surface-bright transition-colors font-label-bold text-label-bold">5</button>
+<button class="p-2 rounded-lg bg-surface-variant hover:bg-surface-bright transition-colors font-label-bold text-label-bold">6</button>
+<button class="p-2 rounded-lg bg-surface-variant hover:bg-surface-bright transition-colors font-label-bold text-label-bold">7</button>
+<button class="p-2 rounded-lg bg-surface-variant hover:bg-surface-bright transition-colors font-label-bold text-label-bold">8</button>
+<button class="p-2 rounded-lg bg-surface-variant hover:bg-surface-bright transition-colors font-label-bold text-label-bold">9</button>
+<button class="p-2 rounded-lg bg-surface-variant hover:bg-surface-bright transition-colors font-label-bold text-label-bold">10</button>
+</div>
+</div>
+<!-- Step 2: Time Slots -->
+<div class="mb-stack-lg">
+<h3 class="font-title-md text-title-md text-secondary-fixed mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="schedule">schedule</span>
+                        Hora
+                    </h3>
+<div class="flex flex-wrap gap-3">
+<button class="px-4 py-2 rounded-full border border-outline-variant hover:border-secondary-fixed text-on-surface-variant hover:text-secondary-fixed transition-colors font-label-bold text-label-bold">13:00</button>
+<button class="px-4 py-2 rounded-full bg-secondary-container text-on-secondary-container font-label-bold text-label-bold custom-shadow">14:00</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant hover:border-secondary-fixed text-on-surface-variant hover:text-secondary-fixed transition-colors font-label-bold text-label-bold">14:30</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant hover:border-secondary-fixed text-on-surface-variant hover:text-secondary-fixed transition-colors font-label-bold text-label-bold">20:00</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant hover:border-secondary-fixed text-on-surface-variant hover:text-secondary-fixed transition-colors font-label-bold text-label-bold">21:00</button>
+<button class="px-4 py-2 rounded-full border border-surface-variant text-surface-variant cursor-not-allowed font-label-bold text-label-bold" disabled="">22:00 (Lleno)</button>
+</div>
+</div>
+<!-- Step 3: Number of People -->
+<div class="mb-stack-lg">
+<h3 class="font-title-md text-title-md text-secondary-fixed mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+                        Comensales
+                    </h3>
+<div class="flex items-center gap-4 bg-surface-variant rounded-lg p-2 w-max">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface text-on-surface hover:text-secondary-fixed transition-colors">
+<span class="material-symbols-outlined" data-icon="remove">remove</span>
+</button>
+<span class="font-headline-lg text-headline-lg w-8 text-center">2</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface text-on-surface hover:text-secondary-fixed transition-colors">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+</div>
+</div>
+<!-- Step 4: Confirm Action -->
+<button class="w-full bg-[#FF4D00] text-[#121212] font-label-bold text-label-bold uppercase py-4 rounded-lg hover-lift mt-4">
+                    Confirmar Reserva
+                </button>
+</div>
+</section>
+<!-- Aside: Reservation Summary & Ambient Image -->
+<aside class="flex-1 w-full max-w-md lg:max-w-sm flex flex-col gap-stack-lg">
+<!-- Existing Reservations -->
+<div class="bg-surface-container-high rounded-xl p-6 border border-outline-variant">
+<h3 class="font-title-md text-title-md text-on-surface mb-stack-md">Mis Próximas Reservas</h3>
+<div class="flex flex-col gap-4">
+<div class="bg-surface p-4 rounded-lg flex items-start gap-3 border-l-4 border-secondary-container">
+<span class="material-symbols-outlined text-secondary-container" data-icon="event">event</span>
+<div>
+<p class="font-label-bold text-label-bold text-on-surface">Mesa para 4</p>
+<p class="font-caption text-caption text-on-surface-variant">Viernes, 10 Nov - 21:00</p>
+<span class="inline-block mt-2 px-2 py-1 bg-surface-variant text-on-surface text-xs rounded-full">Confirmada</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Atmosphere Image -->
+<div class="rounded-xl overflow-hidden h-64 relative">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dim to-transparent z-10"></div>
+<img alt="A high-contrast, mouth-watering gourmet burger with melting cheese and crispy bacon, sitting on a dark industrial wooden board. The lighting is warm and dramatic, highlighting the juicy textures of the meat. Deep black background creates a premium, moody steakhouse atmosphere. Vibrant orange accents subtly reflect off the bun." class="w-full h-full object-cover" data-alt="A high-contrast, mouth-watering gourmet burger with melting cheese and crispy bacon, sitting on a dark industrial wooden board. The lighting is warm and dramatic, highlighting the juicy textures of the meat. Deep black background creates a premium, moody steakhouse atmosphere. Vibrant orange accents subtly reflect off the bun." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBX_N26TBOaj5QlQpJt7yZPh4xgU_Le5-qAh8tbf6WqRSzslKxQj37_QpubElvxu6QMXvbH83pL-RwdKYg9t7N7Vm84Kiws-dy9qjXH1MqRFjovZKcfZ8JZ6JhNYnvHsljKQLqRLEJMpyoFEsQWyyz8JHrdT6_UnmYebnUtowSjwLZqf7pA6e38d_uvXVw1lAbfdi4mOtI5IS278zM9--DVEosAl3EJdeA5TW6qdEZS99-79xAxACjvXL96mrRB9pUqd_8uP3qGAkk">
+</div>
+</aside>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="bg-surface-container-highest dark:bg-surface-container-highest fixed bottom-0 w-full z-50 rounded-t-xl shadow-[0_-4px_24px_rgba(0,0,0,0.5)] lg:hidden flex justify-around items-center h-16 px-4 pb-safe">
+<a class="flex flex-col items-center justify-center text-outline dark:text-outline-variant hover:text-secondary-fixed transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-caption text-caption uppercase mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline dark:text-outline-variant hover:text-secondary-fixed transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="fastfood">fastfood</span>
+<span class="font-caption text-caption uppercase mt-1">Menu</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed scale-110" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+<span class="font-caption text-caption uppercase mt-1">Book</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline dark:text-outline-variant hover:text-secondary-fixed transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-caption text-caption uppercase mt-1">Profile</span>
+</a>
+</nav>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest w-full py-stack-lg border-t border-outline-variant pb-24 lg:pb-stack-lg">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-stack-lg px-container-margin max-w-7xl mx-auto">
+<div>
+<h4 class="font-display-lg text-headline-lg-mobile text-secondary mb-4">Estan Burger</h4>
+<p class="font-caption text-caption text-on-surface-variant">© 2024 Estan Burger. Boldly Crafted.</p>
+</div>
+<div class="flex flex-col gap-2">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary-fixed underline-offset-4 hover:underline transition-all duration-300" href="#">Entrantes</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary-fixed underline-offset-4 hover:underline transition-all duration-300" href="#">Hamburguesas</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary-fixed underline-offset-4 hover:underline transition-all duration-300" href="#">Bebidas</a>
+</div>
+<div class="flex flex-col gap-2">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary-fixed underline-offset-4 hover:underline transition-all duration-300" href="#">Postres</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary-fixed underline-offset-4 hover:underline transition-all duration-300" href="#">Contact</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary-fixed underline-offset-4 hover:underline transition-all duration-300" href="#">Terms</a>
+</div>
+</div>
+</footer>
+
+
+</body></html>

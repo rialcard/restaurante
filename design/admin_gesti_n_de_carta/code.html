@@ -1,0 +1,474 @@
+<!DOCTYPE html><html class="dark" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Gestión de Carta - Estan Burger Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#2a2a2a",
+                    "secondary-fixed": "#ffdbd0",
+                    "surface-variant": "#353535",
+                    "on-background": "#e4e2e1",
+                    "on-tertiary": "#2f3131",
+                    "error-container": "#93000a",
+                    "surface-dim": "#131313",
+                    "on-tertiary-fixed-variant": "#454747",
+                    "outline": "#8e9192",
+                    "inverse-on-surface": "#303030",
+                    "on-surface": "#e4e2e1",
+                    "on-secondary-fixed-variant": "#852400",
+                    "tertiary-container": "#101212",
+                    "on-secondary-container": "#521300",
+                    "on-primary-fixed": "#1c1b1b",
+                    "surface": "#131313",
+                    "primary": "#c8c6c5",
+                    "tertiary-fixed": "#e2e2e2",
+                    "outline-variant": "#444748",
+                    "secondary": "#ffb59e",
+                    "secondary-container": "#ff571a",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "on-surface-variant": "#c4c7c7",
+                    "tertiary": "#c6c6c7",
+                    "primary-fixed": "#e5e2e1",
+                    "surface-tint": "#c8c6c5",
+                    "surface-bright": "#393939",
+                    "on-primary-container": "#7e7d7d",
+                    "on-tertiary-fixed": "#1a1c1c",
+                    "on-tertiary-container": "#7c7d7e",
+                    "surface-container-highest": "#353535",
+                    "on-error": "#690005",
+                    "error": "#ffb4ab",
+                    "inverse-primary": "#5f5e5e",
+                    "surface-container": "#1f2020",
+                    "on-primary": "#313030",
+                    "on-error-container": "#ffdad6",
+                    "secondary-fixed-dim": "#ffb59e",
+                    "on-secondary-fixed": "#3a0b00",
+                    "tertiary-fixed-dim": "#c6c6c7",
+                    "surface-container-lowest": "#0e0e0e",
+                    "inverse-surface": "#e4e2e1",
+                    "on-secondary": "#5e1700",
+                    "on-primary-fixed-variant": "#474646",
+                    "surface-container-low": "#1b1c1c",
+                    "background": "#131313",
+                    "primary-container": "#121212"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "16px",
+                    "base": "8px",
+                    "container-margin": "24px",
+                    "section-gap": "80px",
+                    "stack-lg": "32px",
+                    "gutter": "16px",
+                    "stack-sm": "8px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Montserrat"],
+                    "headline-xl": ["Montserrat"],
+                    "title-md": ["Montserrat"],
+                    "body-md": ["Inter"],
+                    "headline-lg-mobile": ["Montserrat"],
+                    "caption": ["Inter"],
+                    "label-bold": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Montserrat"]
+            },
+            "fontSize": {
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "900"}],
+                    "headline-xl": ["48px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                    "title-md": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                    "label-bold": ["14px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}]
+            }
+          }
+        }
+      }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;700&display=swap');
+        
+        body {
+            background-color: #121212;
+            color: #e4e2e1;
+        }
+        
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #131313;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #353535;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #444748;
+        }
+    </style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&amp;family=Inter:wght@400;500;700&amp;display=swap" data-snapdom="injected-import"></head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex antialiased">
+<!-- Navigation Drawer (Desktop) -->
+<nav class="bg-surface-container dark:bg-surface-container-low text-secondary dark:text-secondary-fixed h-screen w-64 fixed left-0 top-0 bg-surface-container-low dark:bg-surface-container-lowest shadow-lg hidden lg:flex flex-col h-full border-r border-outline-variant z-40">
+<div class="px-container-margin py-stack-md border-b border-outline-variant">
+<h1 class="font-display-lg text-headline-lg uppercase text-secondary">ADMIN DASHBOARD</h1>
+</div>
+<div class="flex-1 py-stack-md flex flex-col gap-2 overflow-y-auto">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant mx-2 my-1 px-4 py-3 rounded-lg flex items-center gap-3 hover:translate-x-1 transition-all" href="#">
+<span class="material-symbols-outlined">event_available</span>
+<span class="font-label-bold text-label-bold">Reservations</span>
+</a>
+<a class="bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 hover:translate-x-1 transition-all opacity-80" href="#">
+<span class="material-symbols-outlined fill">restaurant_menu</span>
+<span class="font-label-bold text-label-bold">Menu Management</span>
+</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant mx-2 my-1 px-4 py-3 rounded-lg flex items-center gap-3 hover:translate-x-1 transition-all" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-bold text-label-bold">Analytics</span>
+</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant mx-2 my-1 px-4 py-3 rounded-lg flex items-center gap-3 hover:translate-x-1 transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-bold text-label-bold">Settings</span>
+</a>
+</div>
+<div class="p-4 border-t border-outline-variant">
+<div class="flex items-center gap-3 text-on-surface-variant">
+<img alt="Admin" class="w-10 h-10 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3Q10hu2VtYtOq-xC8hkDMMWD65lxLFIcdCKtvjS8nWyn1TaBLhEFRbtzUxpeEs1yphaojgGzL4GLSlxo3jizjOrfNG7v9F9LwvgWZqOqz3MYeCHAiYTPbp7XmPG7xylz_b6Ey-IQDwm-PU6udl9hk_g-ZgSUxJeRxuVn5Tyk1ONCk8XMFgPeqBCHe0gg7gxY64xRP2IMGZPH5uhEyLyTlwfDPQaLswSG2O9eDq4CgV1A9vFaKOmQl0yPUSrYxb9CsAKC9wyp2rxI">
+<div>
+<p class="font-label-bold text-label-bold">Admin User</p>
+<p class="font-caption text-caption text-outline">Manager</p>
+</div>
+</div>
+</div>
+</nav>
+<!-- Mobile Top App Bar -->
+<header class="lg:hidden bg-surface dark:bg-surface-dim docked full-width top-0 sticky z-50 bg-surface dark:bg-surface-dim shadow-md">
+<div class="flex justify-between items-center px-container-margin py-stack-md w-full max-w-full mx-auto">
+<button class="text-secondary dark:text-secondary-fixed scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-3xl">menu</span>
+</button>
+<h1 class="font-display-lg text-headline-lg-mobile uppercase tracking-tighter text-secondary dark:text-secondary-fixed">Estan Burger</h1>
+<button class="text-secondary dark:text-secondary-fixed scale-95 active:scale-90 transition-transform">
+<img alt="Profile" class="w-8 h-8 rounded-full border border-secondary" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl5NYGVVYlHCunhGcAa817syACguFCGBn-ThdAQamVGxxTP8UPVkZEnS0C0Q_CPGowGjbrQpbYXjey12-FPdGgh7IY6U0xoNWe7NwvLzf8je3VVEx7DJ1U33_wx8Sjd7lvrZJL2YXbQTEEHd7kBNM3bLsiWtEN2FoOq_pCNZ8trcD_qXy1vWAXRzgjTomIETqoYcYy7TwK2DGdD3lzrqpfZoGkSXBNqGvxNb6JR6WOsmGnx_TfZv4ba6om_Br_Apkt9BG74hiA_kk">
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 lg:ml-64 p-container-margin md:p-10 w-full max-w-7xl mx-auto flex flex-col gap-stack-lg min-h-screen">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-outline-variant pb-6 mt-16 lg:mt-0">
+<div>
+<h2 class="font-display-lg text-4xl md:text-headline-xl text-on-surface mb-2 truncate">Gestión de Carta</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Administra categorías, platos y precios del menú.</p>
+</div>
+<div class="flex gap-4 flex-wrap">
+<button class="bg-[#1C1C1C] border border-[#333333] text-[#F5F5F5] font-label-bold text-label-bold px-6 py-3 rounded hover:bg-[#2A2A2A] transition-colors flex items-center gap-2 whitespace-nowrap">
+<span class="material-symbols-outlined text-sm">add</span>
+                    Añadir Categoría
+                </button>
+<button class="bg-[#FF4D00] text-[#121212] font-label-bold text-label-bold uppercase px-6 py-3 rounded hover:bg-[#ff6a2b] hover:shadow-[0_4px_24px_rgba(255,77,0,0.4)] transition-all flex items-center gap-2 -translate-y-0.5 hover:-translate-y-1" id="btn-nuevo-plato">
+<span class="material-symbols-outlined text-sm">restaurant</span>
+                    Nuevo Plato
+                </button>
+</div>
+</div>
+<!-- Menu Categories Bento Grid -->
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-stack-lg">
+<!-- Category: Hamburguesas -->
+<div class="bg-surface-container-high rounded-xl overflow-hidden border border-outline-variant flex flex-col shadow-[0_8px_32px_rgba(0,0,0,0.4)] transition-transform hover:scale-[1.01] duration-300 group">
+<div class="p-6 bg-surface-container flex justify-between items-center border-b border-outline-variant">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-3xl">lunch_dining</span>
+<h3 class="font-title-md text-title-md text-on-surface uppercase tracking-wide">Hamburguesas</h3>
+<span class="bg-surface-variant text-on-surface-variant font-caption text-caption px-2 py-1 rounded-full">12 Items</span>
+</div>
+<div class="flex gap-2">
+<button class="p-2 text-outline hover:text-secondary transition-colors" title="Editar Categoría">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+<button class="p-2 text-outline hover:text-error transition-colors" title="Eliminar Categoría">
+<span class="material-symbols-outlined text-sm">delete</span>
+</button>
+</div>
+</div>
+<div class="p-0 flex-1 overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-[#333333] text-on-surface-variant font-caption text-caption uppercase bg-[#1C1C1C]">
+<th class="p-4 font-medium w-16">Img</th>
+<th class="p-4 font-medium">Nombre</th>
+<th class="p-4 font-medium">Precio</th>
+<th class="p-4 font-medium">Estado</th>
+<th class="p-4 font-medium text-right w-24">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#333333]">
+<tr class="hover:bg-[#1C1C1C] transition-colors group/row">
+<td class="p-4">
+<div class="w-12 h-12 rounded bg-[#131313] overflow-hidden" data-alt="A close up, high contrast food photography shot of a massive, juicy double smash burger with melting cheddar cheese dripping down the sides. The burger sits on a dark slate surface, illuminated by a warm spotlight that highlights the glossy brioche bun and crispy edges of the meat. The background is a moody, blurred dark restaurant interior, evoking a premium, industrial dining experience.">
+<img alt="La Estan" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBY2VKndM-hu1cIg-bhM_TtBhjtr_l2dmMr1NOvCSKvjCsfRpJgZ3JSXVHaBMshwQ_9TIZB51AfOm2L5ww3kj37bAQvutoFbeL600DFoYucrBPOV4CEUTDxnv4HhY6vWFcDQLZkavde2TncXSv0fDTz3RQH3jijm6vQre1fV9lgG_KbLOUJyBjleQ7hZzMUAFdh7PokQ8Hy3qMswzZ34bVvD9it4fTI8oVOgUZpU1l4iktDNcbulmNJ_M20qjv51LKp4SohtTPYcjU">
+</div>
+</td>
+<td class="p-4">
+<p class="font-label-bold text-label-bold text-on-surface">La Estan Burger</p>
+<p class="font-caption text-caption text-on-surface-variant truncate max-w-[150px]">Doble smash, cheddar, bacon...</p>
+</td>
+<td class="p-4 font-label-bold text-label-bold text-secondary">14.50€</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-surface-variant text-primary border border-[#444748]">Activo</span>
+</td>
+<td class="p-4 text-right">
+<div class="flex justify-end gap-1 opacity-0 group-hover/row:opacity-100 transition-opacity">
+<button class="p-2 text-outline hover:text-secondary transition-colors" title="Editar">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-2 text-outline hover:text-error transition-colors" title="Eliminar">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-[#1C1C1C] transition-colors group/row">
+<td class="p-4">
+<div class="w-12 h-12 rounded bg-[#131313] overflow-hidden" data-alt="A moody, high-end culinary photo of a spicy chicken burger with crispy golden batter, bright red spicy slaw, and a brioche bun. The burger is placed on a rough metallic tray against a pitch-black background. High contrast lighting creates deep shadows and emphasizes the crunchy texture of the chicken and the vibrant colors of the slaw, perfectly capturing the aggressive, appetizing brand identity.">
+<img alt="Spicy Chicken" class="w-full h-full object-cover opacity-50 grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtXWB5CcDg6iRN1_OJNvGpVew3pCAPGuCXyXb2FpQVdFPZ_hQrPoUl5N62hnlx2l_pW1P_XMsHnD5W0J8dt1TAyddulAvsrLZf9XvDDSAsuSIok71svjuR3-uuSpdzOQpV_9LXF8QXPekJuJaB0dbe7aFIhlPMnGiqg--DfWddY7ZB0zGD7uSvGF03AvVowKiurxtuMZ-37-PKBATa3adu8prYjFic4BNgW-eMT_Z32cGnIFRoN7mzuPAUEig5xi2sp69k8Goip68">
+</div>
+</td>
+<td class="p-4">
+<p class="font-label-bold text-label-bold text-on-surface text-opacity-50">Pollos Hermanos</p>
+<p class="font-caption text-caption text-on-surface-variant truncate max-w-[150px]">Pollo crujiente, salsa spicy...</p>
+</td>
+<td class="p-4 font-label-bold text-label-bold text-secondary text-opacity-50">12.00€</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-error-container text-error border border-error/30">Agotado</span>
+</td>
+<td class="p-4 text-right">
+<div class="flex justify-end gap-1 opacity-0 group-hover/row:opacity-100 transition-opacity">
+<button class="p-2 text-outline hover:text-secondary transition-colors" title="Editar">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-2 text-outline hover:text-error transition-colors" title="Eliminar">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 bg-surface-container border-t border-outline-variant text-center">
+<button class="text-secondary hover:text-secondary-fixed font-label-bold text-label-bold text-sm flex items-center justify-center gap-1 w-full transition-colors">
+                        Ver 10 más <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+</div>
+<!-- Category: Entrantes -->
+<div class="bg-surface-container-high rounded-xl overflow-hidden border border-outline-variant flex flex-col shadow-[0_8px_32px_rgba(0,0,0,0.4)] transition-transform hover:scale-[1.01] duration-300">
+<div class="p-6 bg-surface-container flex justify-between items-center border-b border-outline-variant">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-3xl">tapas</span>
+<h3 class="font-title-md text-title-md text-on-surface uppercase tracking-wide">Entrantes</h3>
+<span class="bg-surface-variant text-on-surface-variant font-caption text-caption px-2 py-1 rounded-full">5 Items</span>
+</div>
+<div class="flex gap-2">
+<button class="p-2 text-outline hover:text-secondary transition-colors" title="Editar Categoría">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+<button class="p-2 text-outline hover:text-error transition-colors" title="Eliminar Categoría">
+<span class="material-symbols-outlined text-sm">delete</span>
+</button>
+</div>
+</div>
+<div class="p-0 flex-1 overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="hidden"><tr><th></th></tr></thead> <!-- Hidden header for structure -->
+<tbody class="divide-y divide-[#333333]">
+<tr class="hover:bg-[#1C1C1C] transition-colors group/row">
+<td class="p-4 w-20">
+<div class="w-12 h-12 rounded bg-[#131313] overflow-hidden" data-alt="A dramatic close-up of a portion of loaded nachos piled high on an industrial cast iron skillet. The nachos are smothered in vibrant melted yellow cheese, chunky red salsa, and jalapeños. The lighting is moody and warm, throwing deep shadows in the background and making the textures of the crispy chips and gooey cheese look incredibly appetizing and bold.">
+<img alt="Nachos" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLPSeXPJvVtubu-LRhnAmFR3yUtTh1zZKP9VnCgGXEAkG_srjt4AYMNpgxVkBr4FStPYMaPWQ5_s5vjOGghMTHsDdu8-Utcv_ysgF1pim1UDo5m_hRb0is4wryjGFvdjqxr0pX_rKarz9RPtUI_L9EYTi67tR4l6rfZ5odYu-ZlSLBoZ03sTljbMGemUW68_JNRRoQKxfpE998h-BsLBywM9iccWRA364qS6VinxTO1BbbxuZtSIIT5FcguLLPIJVWIAwc12qJrww">
+</div>
+</td>
+<td class="p-4">
+<p class="font-label-bold text-label-bold text-on-surface">Nachos Estan</p>
+<p class="font-caption text-caption text-on-surface-variant">Con pulled pork y queso fundido</p>
+</td>
+<td class="p-4 font-label-bold text-label-bold text-secondary w-24">9.50€</td>
+<td class="p-4 text-right w-24">
+<div class="flex justify-end gap-1 opacity-0 group-hover/row:opacity-100 transition-opacity">
+<button class="p-2 text-outline hover:text-secondary transition-colors" title="Editar">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-2 text-outline hover:text-error transition-colors" title="Eliminar">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-[#1C1C1C] transition-colors group/row">
+<td class="p-4 w-20">
+<div class="w-12 h-12 rounded bg-[#131313] overflow-hidden" data-alt="Crispy golden onion rings stacked haphazardly in a wire basket lined with brown parchment paper. Next to the basket is a small dark ceramic bowl filled with a rich, dark red BBQ sauce. The scene is set on a distressed wooden table in a dimly lit, high-end industrial burger joint, with high-contrast warm lighting emphasizing the crunch of the batter.">
+<img alt="Aros de Cebolla" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqkal11VeWJWr-wlhh88D56535y2iCQxPZKvLw2OwKxrDC_i_CaAP9mCN71EDHu3M_mrX9Vin-plycKgNwOrn0tZVygrPx5xGRPJYgblAMmgC4Oq337xtw52Jzk4Io4dyOrhJqrtryoOQBo4WO39BeEW8PaRL3Ar_KbK-cwH1EL0exoaI1z0FlDmo2n5BlblGZck62WsKCGzKlAXkG45QzjT_4Hz3BQuhbWFJ9zEIW9_yYUdoUGMiD5Qlgv0J2SZ2mJqYbhWp1-Is">
+</div>
+</td>
+<td class="p-4">
+<p class="font-label-bold text-label-bold text-on-surface">Aros de Cebolla</p>
+<p class="font-caption text-caption text-on-surface-variant">Crujientes con salsa BBQ</p>
+</td>
+<td class="p-4 font-label-bold text-label-bold text-secondary w-24">6.00€</td>
+<td class="p-4 text-right w-24">
+<div class="flex justify-end gap-1 opacity-0 group-hover/row:opacity-100 transition-opacity">
+<button class="p-2 text-outline hover:text-secondary transition-colors" title="Editar">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-2 text-outline hover:text-error transition-colors" title="Eliminar">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Mobile) -->
+<nav class="lg:hidden bg-surface-container-highest dark:bg-surface-container-highest fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container-highest dark:bg-surface-container-highest shadow-[0_-4px_24px_rgba(0,0,0,0.5)] shadow-2xl flex justify-around items-center h-16 px-4 pb-safe">
+<a class="flex flex-col items-center justify-center text-outline dark:text-outline-variant hover:text-secondary-fixed transition-all" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-caption text-caption uppercase mt-1 text-[10px]">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed scale-110 hover:text-secondary-fixed transition-all" href="#">
+<span class="material-symbols-outlined fill">fastfood</span>
+<span class="font-caption text-caption uppercase mt-1 text-[10px] font-bold">Menu</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline dark:text-outline-variant hover:text-secondary-fixed transition-all" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-caption text-caption uppercase mt-1 text-[10px]">Book</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline dark:text-outline-variant hover:text-secondary-fixed transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-caption text-caption uppercase mt-1 text-[10px]">Profile</span>
+</a>
+</nav>
+<!-- Modal Form (Hidden by default) -->
+<div class="fixed inset-0 z-[100] flex items-center justify-center hidden" id="modal-nuevo-plato">
+<!-- Backdrop -->
+<div class="absolute inset-0 bg-black/80 backdrop-blur-sm" id="modal-backdrop"></div>
+<!-- Modal Content -->
+<div class="relative bg-[#1C1C1C] border border-[#333333] w-full max-w-2xl mx-4 rounded-xl shadow-[0_16px_64px_rgba(0,0,0,0.8)] overflow-hidden flex flex-col max-h-[90vh]">
+<!-- Header -->
+<div class="p-6 border-b border-[#333333] flex justify-between items-center bg-[#2A2A2A]">
+<h3 class="font-display-lg text-headline-lg-mobile text-on-surface">Añadir Nuevo Plato</h3>
+<button class="text-outline hover:text-secondary transition-colors" id="btn-close-modal">
+<span class="material-symbols-outlined text-3xl">close</span>
+</button>
+</div>
+<!-- Body (Scrollable) -->
+<div class="p-8 overflow-y-auto custom-scrollbar flex-col gap-6 flex">
+<div class="flex gap-6 items-start">
+<!-- Image Upload Stub -->
+<div class="w-32 h-32 rounded-lg border-2 border-dashed border-[#444748] bg-[#131313] flex flex-col items-center justify-center text-outline hover:border-secondary hover:text-secondary transition-colors cursor-pointer group shrink-0">
+<span class="material-symbols-outlined text-3xl mb-2 group-hover:scale-110 transition-transform">add_a_photo</span>
+<span class="font-caption text-caption uppercase">Subir Foto</span>
+</div>
+<div class="flex-1 space-y-4">
+<div>
+<label class="block font-caption text-caption uppercase text-outline mb-1">Nombre del Plato</label>
+<input class="w-full bg-[#131313] border border-[#333333] rounded px-4 py-3 text-on-surface focus:border-[#FF4D00] focus:ring-1 focus:ring-[#FF4D00] transition-colors shadow-[inset_0_2px_4px_rgba(0,0,0,0.2)] placeholder-outline-variant" placeholder="Ej. Doble Smash Bacon" type="text">
+</div>
+<div class="flex gap-4">
+<div class="flex-1">
+<label class="block font-caption text-caption uppercase text-outline mb-1">Precio (€)</label>
+<input class="w-full bg-[#131313] border border-[#333333] rounded px-4 py-3 text-on-surface focus:border-[#FF4D00] focus:ring-1 focus:ring-[#FF4D00] transition-colors shadow-[inset_0_2px_4px_rgba(0,0,0,0.2)] placeholder-outline-variant font-label-bold text-secondary" placeholder="0.00" step="0.01" type="number">
+</div>
+<div class="flex-1">
+<label class="block font-caption text-caption uppercase text-outline mb-1">Categoría</label>
+<select class="w-full bg-[#131313] border border-[#333333] rounded px-4 py-3 text-on-surface focus:border-[#FF4D00] focus:ring-1 focus:ring-[#FF4D00] transition-colors shadow-[inset_0_2px_4px_rgba(0,0,0,0.2)]">
+<option>Hamburguesas</option>
+<option>Entrantes</option>
+<option>Bebidas</option>
+<option>Postres</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+<div>
+<label class="block font-caption text-caption uppercase text-outline mb-1">Descripción</label>
+<textarea class="w-full bg-[#131313] border border-[#333333] rounded px-4 py-3 text-on-surface focus:border-[#FF4D00] focus:ring-1 focus:ring-[#FF4D00] transition-colors shadow-[inset_0_2px_4px_rgba(0,0,0,0.2)] placeholder-outline-variant resize-none" placeholder="Ingredientes y detalles..." rows="3"></textarea>
+</div>
+<div class="flex items-center gap-3 bg-[#131313] p-4 rounded border border-[#333333]">
+<div class="relative flex items-start">
+<div class="flex items-center h-5">
+<input checked="" class="w-5 h-5 bg-[#1C1C1C] border-[#444748] rounded text-[#FF4D00] focus:ring-[#FF4D00] focus:ring-offset-[#131313]" id="is-active" type="checkbox">
+</div>
+<div class="ml-3 text-sm">
+<label class="font-label-bold text-label-bold text-on-surface" for="is-active">Plato Activo</label>
+<p class="font-caption text-caption text-on-surface-variant">Visible en la carta digital y POS.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="p-6 border-t border-[#333333] bg-[#2A2A2A] flex justify-end gap-4">
+<button class="bg-transparent border border-[#F5F5F5] text-[#F5F5F5] font-label-bold text-label-bold px-6 py-3 rounded hover:bg-[#333333] transition-colors" id="btn-cancel-modal">
+                    Cancelar
+                </button>
+<button class="bg-[#FF4D00] text-[#121212] font-label-bold text-label-bold uppercase px-8 py-3 rounded hover:bg-[#ff6a2b] hover:shadow-[0_4px_24px_rgba(255,77,0,0.4)] transition-all">
+                    Guardar Plato
+                </button>
+</div>
+</div>
+</div>
+<script>
+        // Simple Modal Logic
+        const modal = document.getElementById('modal-nuevo-plato');
+        const btnOpen = document.getElementById('btn-nuevo-plato');
+        const btnClose = document.getElementById('btn-close-modal');
+        const btnCancel = document.getElementById('btn-cancel-modal');
+        const backdrop = document.getElementById('modal-backdrop');
+
+        function toggleModal() {
+            modal.classList.toggle('hidden');
+            if(!modal.classList.contains('hidden')) {
+                // Prevent scrolling on body
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        btnOpen.addEventListener('click', toggleModal);
+        btnClose.addEventListener('click', toggleModal);
+        btnCancel.addEventListener('click', toggleModal);
+        backdrop.addEventListener('click', toggleModal);
+    </script>
+
+
+</body></html>

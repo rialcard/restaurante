@@ -1,0 +1,395 @@
+<!DOCTYPE html><html class="dark" lang="es" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Estan Burger | Landing &amp; Menú</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Montserrat:wght@600;700;800;900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#2a2a2a",
+                        "secondary-fixed": "#ffdbd0",
+                        "surface-variant": "#353535",
+                        "on-background": "#e4e2e1",
+                        "on-tertiary": "#2f3131",
+                        "error-container": "#93000a",
+                        "surface-dim": "#131313",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "outline": "#8e9192",
+                        "inverse-on-surface": "#303030",
+                        "on-surface": "#e4e2e1",
+                        "on-secondary-fixed-variant": "#852400",
+                        "tertiary-container": "#101212",
+                        "on-secondary-container": "#521300",
+                        "on-primary-fixed": "#1c1b1b",
+                        "surface": "#131313",
+                        "primary": "#c8c6c5",
+                        "tertiary-fixed": "#e2e2e2",
+                        "outline-variant": "#444748",
+                        "secondary": "#ffb59e",
+                        "secondary-container": "#ff571a",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "on-surface-variant": "#c4c7c7",
+                        "tertiary": "#c6c6c7",
+                        "primary-fixed": "#e5e2e1",
+                        "surface-tint": "#c8c6c5",
+                        "surface-bright": "#393939",
+                        "on-primary-container": "#7e7d7d",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "on-tertiary-container": "#7c7d7e",
+                        "surface-container-highest": "#353535",
+                        "on-error": "#690005",
+                        "error": "#ffb4ab",
+                        "inverse-primary": "#5f5e5e",
+                        "surface-container": "#1f2020",
+                        "on-primary": "#313030",
+                        "on-error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#ffb59e",
+                        "on-secondary-fixed": "#3a0b00",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "surface-container-lowest": "#0e0e0e",
+                        "inverse-surface": "#e4e2e1",
+                        "on-secondary": "#5e1700",
+                        "on-primary-fixed-variant": "#474646",
+                        "surface-container-low": "#1b1c1c",
+                        "background": "#131313",
+                        "primary-container": "#121212"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "base": "8px",
+                        "container-margin": "24px",
+                        "section-gap": "80px",
+                        "stack-lg": "32px",
+                        "gutter": "16px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Montserrat"],
+                        "headline-xl": ["Montserrat"],
+                        "title-md": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "caption": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "900" }],
+                        "headline-xl": ["48px", { "lineHeight": "1.2", "fontWeight": "800" }],
+                        "title-md": ["20px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "caption": ["12px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "label-bold": ["14px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #131313;
+            color: #e4e2e1;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Custom Button Styles matching guidance */
+        .btn-primary {
+            background-color: #FF4D00;
+            color: #121212;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #ff6a2b; /* slightly lighter */
+            box-shadow: 0 4px 15px rgba(255, 77, 0, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            border: 1px solid #F5F5F5;
+            color: #F5F5F5;
+            text-transform: uppercase;
+            font-weight: bold;
+            background-color: transparent;
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background-color: rgba(245, 245, 245, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Ambient Shadows */
+        .ambient-shadow {
+            box-shadow: 0 10px 32px rgba(255, 77, 0, 0.05); /* very subtle warm tint */
+        }
+        
+        /* Menu Card Hover */
+        .menu-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .menu-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 35px rgba(255, 77, 0, 0.08);
+        }
+
+        /* Image dark gradient overlay */
+        .img-gradient::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to top, rgba(19, 19, 19, 0.9) 0%, transparent 100%);
+            border-radius: inherit;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopAppBar (From JSON) -->
+<header class="bg-surface dark:bg-surface-dim docked full-width top-0 sticky z-50 shadow-md">
+<div class="flex justify-between items-center px-container-margin py-stack-md w-full max-w-full mx-auto">
+<div class="flex items-center gap-4">
+<button aria-label="Menu" class="text-secondary dark:text-secondary-fixed scale-95 active:scale-90 transition-transform hidden md:block">
+<span class="material-symbols-outlined text-3xl" data-icon="menu">menu</span>
+</button>
+<a class="font-display-lg text-headline-lg-mobile md:text-headline-lg uppercase tracking-tighter text-secondary dark:text-secondary-fixed scale-95 active:scale-90 transition-transform" href="#">
+                    Estan Burger
+                </a>
+</div>
+<!-- Desktop Nav Links (Not strictly in JSON but standard for header) -->
+<nav class="hidden md:flex gap-8">
+<a class="font-body-md text-body-md text-secondary dark:text-secondary-fixed border-b-2 border-secondary hover:text-secondary transition-colors duration-200" href="#">Menú</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">Reservas</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-secondary transition-colors duration-200" href="#">Nosotros</a>
+</nav>
+<button aria-label="User profile avatar" class="text-secondary dark:text-secondary-fixed scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-3xl" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="relative w-full h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+<!-- Background Image -->
+<div class="absolute inset-0 z-0 bg-surface-container-highest">
+<img alt="Hero Burger" class="w-full h-full object-cover object-center opacity-60" data-alt="A massive, juicy artisanal burger stacked high with melted cheddar cheese, thick-cut bacon, fresh lettuce, and tomato, sitting on a rustic wooden cutting board. The scene is illuminated by dramatic, warm, high-contrast industrial lighting that highlights the glistening juices of the meat and the textures of the toasted brioche bun. The background is a moody, dark, high-end steakhouse interior with subtle glowing amber accents, creating an intensely appetizing and aggressive culinary vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrEJUKS9aK1j-j_LZKNPgxq-ac8eBn3jaIYa1wm87UyYd5b8PqHl1sRaOY5G__ZQuyWAVFfBLxKV70nNiqv2Hilq6Ka6kUIO03gDaPgC4MUATeMWh1MGSARozuGXs_xOHTNRZ1pMh8EabnUETFU58hgOOazPeZuoYd4vR8df5KyzNgF7woayWIXLhy5NVw7lyWWdhgPPcGvKVkOnjLtUZ4TqhwNMpD7xekQntqABU69Eu0rmD9jZYYSp7kcw4CTuTH1Gj1Ba4exko">
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
+<div class="absolute inset-0 bg-black/40"></div> <!-- Extra darkening for text legibility -->
+</div>
+<!-- Content -->
+<div class="relative z-10 text-center px-container-margin max-w-4xl mx-auto mt-16">
+<h2 class="font-display-lg text-4xl md:text-display-lg text-on-surface mb-4 uppercase tracking-tight drop-shadow-lg px-2">
+                    Artesanales y Jugosas
+                </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-2xl mx-auto">
+                    Descubre la intensidad del verdadero sabor. Hamburguesas premium preparadas al momento en un ambiente único.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<button class="btn-primary font-label-bold text-label-bold px-8 py-4 rounded-DEFAULT">
+                        Reservar Ahora
+                    </button>
+<button class="btn-secondary font-label-bold text-label-bold px-8 py-4 rounded-DEFAULT">
+                        Ver Menú
+                    </button>
+</div>
+</div>
+</section>
+<!-- Menu Section -->
+<section class="py-section-gap px-container-margin max-w-7xl mx-auto" id="menu">
+<div class="text-center mb-stack-lg">
+<h2 class="font-headline-xl text-3xl md:text-headline-xl text-on-surface mb-2 uppercase px-4">Nuestras Hamburguesas</h2>
+<div class="w-24 h-1 bg-secondary mx-auto mb-stack-lg"></div>
+</div>
+<!-- Menu Tabs -->
+<div class="flex overflow-x-auto pb-4 mb-8 justify-start md:justify-center gap-4 scrollbar-hide">
+<button class="px-6 py-2 rounded-full border border-secondary text-secondary font-label-bold text-label-bold whitespace-nowrap bg-secondary/10">
+                    Hamburguesas
+                </button>
+<button class="px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-bold text-label-bold whitespace-nowrap hover:border-secondary hover:text-secondary transition-colors">
+                    Entrantes
+                </button>
+<button class="px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-bold text-label-bold whitespace-nowrap hover:border-secondary hover:text-secondary transition-colors">
+                    Bebidas
+                </button>
+<button class="px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-bold text-label-bold whitespace-nowrap hover:border-secondary hover:text-secondary transition-colors">
+                    Postres
+                </button>
+</div>
+<!-- Menu Grid (Bento/Asymmetric feel) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-container-margin">
+<!-- Card 1: Featured (Spans 2 cols on lg) -->
+<article class="menu-card bg-surface-container-high rounded-xl overflow-hidden ambient-shadow flex flex-col lg:col-span-2 lg:flex-row">
+<div class="relative h-64 lg:h-auto lg:w-1/2 img-gradient">
+<img alt="La Bestia Burger" class="w-full h-full object-cover rounded-t-xl lg:rounded-tr-none lg:rounded-l-xl" data-alt="A close-up, dramatic shot of a massive double cheeseburger named 'La Bestia'. It features two thick, charred beef patties, oozing sharp cheddar cheese, crispy bacon, caramelized onions, and a dark, rich BBQ sauce spilling over the edges of a toasted brioche bun. The lighting is warm and directional, emphasizing the steam rising from the hot meat and creating deep, appetizing shadows in a modern, moody dark-themed restaurant setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABzUozU8AXbAdWmoj6UovmmaGnW1ctO5OETXAWZE-Ho3zlESO2E_VNbt6bL2qRgHUhgzU6WM912B2H3P5vclaEnNbPMwsxGbEMvKfNZwhhyFwAWUBdlCXlggdobSE9IHpv91TyFurKO82pKuTHkTPxSQw8zMD0fUO_sIsHw98q01ww9hkP5DgELMf17d5Lru0sBP1Nph2PUDCkRHCjKjIu2mp80jLoPLmIdaxFE1stbI0-iIWEjcBcVGVZfOVrUqnz4dXqPe-3kyY">
+</div>
+<div class="p-6 flex flex-col justify-between flex-grow">
+<div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-title-md text-title-md text-on-surface uppercase">La Bestia</h3>
+<span class="font-title-md text-title-md text-secondary">$32.000</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">
+                                Doble carne de vaca madurada (400g), triple cheddar fundido, bacon crujiente ahumado en madera de manzano, cebolla caramelizada y nuestra salsa especial Estan.
+                            </p>
+</div>
+<button class="mt-auto self-start md:self-end flex items-center gap-2 text-secondary hover:text-secondary-container transition-colors group">
+<span class="font-label-bold text-label-bold uppercase">Añadir</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="add_circle">add_circle</span>
+</button>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="menu-card bg-surface-container-high rounded-xl overflow-hidden ambient-shadow flex flex-col">
+<div class="relative h-48 img-gradient">
+<img alt="Truffle Burger" class="w-full h-full object-cover rounded-t-xl" data-alt="A gourmet burger centered on a slate plate. The burger features a perfectly cooked medium-rare beef patty topped with a generous mound of sautéed wild mushrooms and a creamy, pale truffle mayo. The bun is a dark, glossy brioche. The scene is lit with striking, contrast-heavy lighting against a dark gray, textured industrial background, highlighting the luxurious textures of the ingredients." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC77nIotegtaX_qCNUbwTJ6Zv7ey7AJsxzwIEpjNvM-cLrWhkz6oPWk6sTSMlcf466xiSxF-Hq3bT4YaOjGpvANXOsCve8EZQ86QFlgZGcVM4rcmeYmLBXMgylnAg2wgf5l0HEM720z7xQY-VovtBKWWLdjesxcqhcgUKZpfVZb69qXX3HjFW1SvJ0zrE2HZBrUOJiMO0GuQ8oUqgD-1JaFut25eiuJ1V0PbJlG-o3GsCfRiNbwUFeFiQapcuTMrK4RBUS5BswyscY">
+</div>
+<div class="p-6 flex flex-col justify-between flex-grow">
+<div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-title-md text-title-md text-on-surface uppercase">Truffle Magic</h3>
+<span class="font-title-md text-title-md text-secondary">$28.000</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">
+                                Carne de vaca (200g), queso provolone, setas silvestres salteadas y mayonesa de trufa negra.
+                            </p>
+</div>
+<button class="mt-auto flex items-center gap-2 text-secondary hover:text-secondary-container transition-colors w-full justify-between border-t border-outline-variant pt-4">
+<span class="font-label-bold text-label-bold uppercase">Añadir</span>
+<span class="material-symbols-outlined" data-icon="add_shopping_cart">add_shopping_cart</span>
+</button>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="menu-card bg-surface-container-high rounded-xl overflow-hidden ambient-shadow flex flex-col">
+<div class="relative h-48 img-gradient">
+<img alt="Spicy Inferno Burger" class="w-full h-full object-cover rounded-t-xl" data-alt="A vibrant, spicy chicken sandwich. A thick, craggy piece of perfectly fried chicken breast is slathered in a bright red, glossy hot sauce, topped with vivid green jalapeño slices and a crunchy slaw. It sits on a dark wooden board. The lighting is intense and fiery, with dark shadows emphasizing the rugged texture of the fried chicken and the slickness of the sauce, fitting a high-contrast modern culinary style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIDKr8amWXPxKEDeRLcrWaUa4JRCzLD6opq0I81DXQUG3HhDDsucuH0KnLai1xj_D268aktP1g3187RAO2kzbC9nQih8tZaxRgqAdc6Oykcwj5HOlP-G3df5svfgWqrQPQpO3yenZSK5AidpOUf9vTR5x7mkzqsgkL7nNDK_KQG6z-hf9a7_uU57qxteiDu_XkvFNHwY3u_kjYujNPKmUmgEc_-iRvBsiy9NOxRYCPJn34Gy1bYa38_S29Fm8OmLydArxVlQHVF_Q">
+</div>
+<div class="p-6 flex flex-col justify-between flex-grow">
+<div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-title-md text-title-md text-on-surface uppercase">Crispy Inferno</h3>
+<span class="font-title-md text-title-md text-secondary">$25.000</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">
+                                Pollo frito extra crujiente estilo sureño, salsa buffalo picante, jalapeños encurtidos y ensalada de col.
+                            </p>
+</div>
+<button class="mt-auto flex items-center gap-2 text-secondary hover:text-secondary-container transition-colors w-full justify-between border-t border-outline-variant pt-4">
+<span class="font-label-bold text-label-bold uppercase">Añadir</span>
+<span class="material-symbols-outlined" data-icon="add_shopping_cart">add_shopping_cart</span>
+</button>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="menu-card bg-surface-container-high rounded-xl overflow-hidden ambient-shadow flex flex-col">
+<div class="relative h-48 img-gradient">
+<img alt="Classic Burger" class="w-full h-full object-cover rounded-t-xl" data-alt="A flawless, classic cheeseburger presented elegantly. A single, juicy beef patty is topped with a perfectly square slice of melting American cheese, crisp green leaf lettuce, a slice of red tomato, and thinly sliced red onions. The bun is golden and smooth. The background is a very dark, blurred industrial space, keeping the focus entirely on the vibrant colors and fresh textures of the burger under bright, targeted spotlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpwtf-D-NPsXZ7w-nwD1lSxBns8ZdJsCCOVsHJrJ_HqL_fqJu2X2AYKMBGLt9hy09dMrrceG81_-JzKT1WeRcEsbV4EwYEsDytDsJbTcXrEiV7SXZp6mgtwIuGxorA37-MQyy1khQaNpkRQHHtVwTMCU1XzfpJokd7kf7hrjMOO7gvMmDDObC3zK1n7_Vt5fDav6m0HEKXRmNnHVRkflcKSTr67dpBhLlPUcavBHApg5HiF3E17mOCyfz4j1aXLh4fjsNy1R6uy4M">
+</div>
+<div class="p-6 flex flex-col justify-between flex-grow">
+<div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-title-md text-title-md text-on-surface uppercase">La Clásica</h3>
+<span class="font-title-md text-title-md text-secondary">$22.000</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">
+                                Carne de vaca (200g), lechuga batavia, tomate fresco, cebolla morada, queso cheddar y mayonesa.
+                            </p>
+</div>
+<button class="mt-auto flex items-center gap-2 text-secondary hover:text-secondary-container transition-colors w-full justify-between border-t border-outline-variant pt-4">
+<span class="font-label-bold text-label-bold uppercase">Añadir</span>
+<span class="material-symbols-outlined" data-icon="add_shopping_cart">add_shopping_cart</span>
+</button>
+</div>
+</article>
+<!-- Promo Card (Visual Break) -->
+<div class="bg-secondary text-primary-container rounded-xl p-8 flex flex-col justify-center items-center text-center ambient-shadow relative overflow-hidden">
+<div class="absolute -right-10 -bottom-10 opacity-20 pointer-events-none">
+<span class="material-symbols-outlined text-[150px]" data-icon="local_fire_department">local_fire_department</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg mb-2 z-10">Sabor Ahumado</h3>
+<p class="font-body-md text-body-md mb-6 z-10 max-w-[200px]">Todas nuestras carnes se cocinan en parrilla de carbón volcánico.</p>
+<button class="btn-primary bg-primary-container text-secondary hover:bg-surface border border-transparent z-10 font-label-bold text-label-bold px-6 py-3 rounded-DEFAULT">
+                         Conoce el Proceso
+                     </button>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (From JSON) -->
+<nav class="bg-surface-container-highest dark:bg-surface-container-highest fixed bottom-0 w-full z-50 rounded-t-xl shadow-[0_-4px_24px_rgba(0,0,0,0.5)] shadow-2xl lg:hidden flex justify-around items-center h-16 px-4 pb-safe">
+<!-- Inactive -->
+<a class="flex flex-col items-center justify-center text-outline dark:text-outline-variant hover:text-secondary-fixed transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:-translate-y-1 transition-transform" data-icon="home">home</span>
+<span class="font-caption text-caption uppercase mt-1">Home</span>
+</a>
+<!-- Active -->
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed scale-110 group" href="#">
+<span class="material-symbols-outlined" data-icon="fastfood">fastfood</span>
+<span class="font-caption text-caption uppercase mt-1">Menu</span>
+</a>
+<!-- Inactive -->
+<a class="flex flex-col items-center justify-center text-outline dark:text-outline-variant hover:text-secondary-fixed transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:-translate-y-1 transition-transform" data-icon="calendar_today">calendar_today</span>
+<span class="font-caption text-caption uppercase mt-1">Book</span>
+</a>
+<!-- Inactive -->
+<a class="flex flex-col items-center justify-center text-outline dark:text-outline-variant hover:text-secondary-fixed transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:-translate-y-1 transition-transform" data-icon="person">person</span>
+<span class="font-caption text-caption uppercase mt-1">Profile</span>
+</a>
+</nav>
+<!-- Footer (From JSON) -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest w-full py-stack-lg border-t border-outline-variant pb-24 lg:pb-stack-lg">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-stack-lg px-container-margin max-w-7xl mx-auto">
+<div class="md:col-span-2">
+<h4 class="font-display-lg text-headline-lg text-secondary mb-4 uppercase">Estan Burger</h4>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs mb-4">
+                    La verdadera experiencia de hamburguesas artesanales. Fuego, carne de calidad y actitud.
+                </p>
+<p class="font-caption text-caption text-on-surface-variant">
+                    © 2024 Estan Burger. Boldly Crafted.
+                </p>
+</div>
+<div>
+<h5 class="font-title-md text-title-md text-on-surface mb-4">Menú</h5>
+<ul class="space-y-2">
+<li class=""><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary-fixed underline-offset-4 hover:underline transition-all duration-300" href="#">Entrantes</a></li>
+<li class=""><a class="font-body-md text-body-md text-secondary font-bold hover:text-secondary-fixed underline-offset-4 hover:underline transition-all duration-300" href="#">Hamburguesas</a></li>
+<li class=""><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary-fixed underline-offset-4 hover:underline transition-all duration-300" href="#">Bebidas</a></li>
+<li class=""><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary-fixed underline-offset-4 hover:underline transition-all duration-300" href="#">Postres</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-title-md text-title-md text-on-surface mb-4">Info</h5>
+<ul class="space-y-2">
+<li class=""><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary-fixed underline-offset-4 hover:underline transition-all duration-300" href="#">Contact</a></li>
+<li class=""><a class="font-body-md text-body-md text-on-surface-variant hover:text-secondary-fixed underline-offset-4 hover:underline transition-all duration-300" href="#">Terms</a></li>
+</ul>
+</div>
+</div>
+</footer>
+
+
+</body></html>

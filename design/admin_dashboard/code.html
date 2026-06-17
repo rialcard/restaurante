@@ -1,0 +1,327 @@
+<!DOCTYPE html><html class="dark" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Estan Burger - Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#2a2a2a",
+                        "secondary-fixed": "#ffdbd0",
+                        "surface-variant": "#353535",
+                        "on-background": "#e4e2e1",
+                        "on-tertiary": "#2f3131",
+                        "error-container": "#93000a",
+                        "surface-dim": "#131313",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "outline": "#8e9192",
+                        "inverse-on-surface": "#303030",
+                        "on-surface": "#e4e2e1",
+                        "on-secondary-fixed-variant": "#852400",
+                        "tertiary-container": "#101212",
+                        "on-secondary-container": "#521300",
+                        "on-primary-fixed": "#1c1b1b",
+                        "surface": "#131313",
+                        "primary": "#c8c6c5",
+                        "tertiary-fixed": "#e2e2e2",
+                        "outline-variant": "#444748",
+                        "secondary": "#ffb59e",
+                        "secondary-container": "#ff571a",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "on-surface-variant": "#c4c7c7",
+                        "tertiary": "#c6c6c7",
+                        "primary-fixed": "#e5e2e1",
+                        "surface-tint": "#c8c6c5",
+                        "surface-bright": "#393939",
+                        "on-primary-container": "#7e7d7d",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "on-tertiary-container": "#7c7d7e",
+                        "surface-container-highest": "#353535",
+                        "on-error": "#690005",
+                        "error": "#ffb4ab",
+                        "inverse-primary": "#5f5e5e",
+                        "surface-container": "#1f2020",
+                        "on-primary": "#313030",
+                        "on-error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#ffb59e",
+                        "on-secondary-fixed": "#3a0b00",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "surface-container-lowest": "#0e0e0e",
+                        "inverse-surface": "#e4e2e1",
+                        "on-secondary": "#5e1700",
+                        "on-primary-fixed-variant": "#474646",
+                        "surface-container-low": "#1b1c1c",
+                        "background": "#131313",
+                        "primary-container": "#121212"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "base": "8px",
+                        "container-margin": "24px",
+                        "section-gap": "80px",
+                        "stack-lg": "32px",
+                        "gutter": "16px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Montserrat"],
+                        "headline-xl": ["Montserrat"],
+                        "title-md": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "caption": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "900"}],
+                        "headline-xl": ["48px", {"lineHeight": "1.2", "fontWeight": "800"}],
+                        "title-md": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "caption": ["12px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                        "label-bold": ["14px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.background'); color: theme('colors.on-background'); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .fill-icon { font-variation-settings: 'FILL' 1; }
+        
+        /* Ambient Shadow Utilities */
+        .shadow-ambient {
+            box-shadow: 0 16px 32px -4px rgba(255, 87, 26, 0.05), 0 8px 16px -4px rgba(0, 0, 0, 0.5);
+        }
+        .shadow-glow {
+            box-shadow: 0 8px 24px -4px rgba(255, 87, 26, 0.3);
+        }
+        
+        /* Table row hover */
+        .admin-table-row:hover {
+            background-color: theme('colors.surface-variant');
+        }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden antialiased selection:bg-secondary selection:text-on-secondary">
+<!-- Mobile TopAppBar -->
+<header class="lg:hidden docked full-width top-0 sticky z-50 bg-surface dark:bg-surface-dim shadow-md flex justify-between items-center px-container-margin py-stack-md w-full max-w-full mx-auto">
+<button class="text-secondary dark:text-secondary-fixed scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[24px]">menu</span>
+</button>
+<span class="font-display-lg text-headline-lg-mobile uppercase tracking-tighter text-secondary dark:text-secondary-fixed">
+            Estan Burger
+        </span>
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center overflow-hidden border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">person</span>
+</div>
+</header>
+<!-- NavigationDrawer (Desktop) -->
+<aside class="bg-surface-container dark:bg-surface-container-low hidden lg:flex flex-col h-full border-r border-outline-variant shadow-lg h-screen w-64 fixed left-0 top-0 z-40">
+<div class="px-container-margin py-stack-lg border-b border-outline-variant/30 mb-4">
+<h1 class="font-display-lg text-headline-lg uppercase text-secondary tracking-tighter leading-none">Estan<br>Burger</h1>
+<p class="font-caption text-caption text-on-surface-variant mt-2 tracking-widest uppercase opacity-70">ADMIN DASHBOARD</p>
+</div>
+<nav class="flex-1 overflow-y-auto py-2">
+<!-- Active Item: Reservations (implied by content context) -->
+<a class="bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-lg mx-2 my-1 px-4 py-3 flex items-center gap-3 Active: opacity-80 shadow-glow transition-all font-label-bold text-label-bold" href="#">
+<span class="material-symbols-outlined fill-icon text-[20px]" data-weight="fill">event_available</span>
+<span>Reservations</span>
+</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant mx-2 my-1 px-4 py-3 rounded-lg flex items-center gap-3 hover:translate-x-1 transition-all font-label-bold text-label-bold group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-secondary transition-colors">restaurant_menu</span>
+<span class="group-hover:text-on-surface transition-colors">Menu Management</span>
+</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant mx-2 my-1 px-4 py-3 rounded-lg flex items-center gap-3 hover:translate-x-1 transition-all font-label-bold text-label-bold group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-secondary transition-colors">analytics</span>
+<span class="group-hover:text-on-surface transition-colors">Analytics</span>
+</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-variant mx-2 my-1 px-4 py-3 rounded-lg flex items-center gap-3 hover:translate-x-1 transition-all font-label-bold text-label-bold group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-secondary transition-colors">settings</span>
+<span class="group-hover:text-on-surface transition-colors">Settings</span>
+</a>
+</nav>
+<div class="p-4 border-t border-outline-variant/30 mt-auto">
+<div class="flex items-center gap-3 px-2 py-2">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center border border-outline">
+<span class="material-symbols-outlined text-secondary">admin_panel_settings</span>
+</div>
+<div>
+<p class="font-label-bold text-label-bold text-on-surface">Admin User</p>
+<p class="font-caption text-caption text-on-surface-variant">Manager</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 h-full overflow-y-auto bg-background w-full lg:ml-64 relative">
+<!-- Abstract Industrial Background Accent -->
+<div class="absolute top-0 right-0 w-full h-96 bg-gradient-to-bl from-surface-container to-transparent opacity-50 pointer-events-none z-0"></div>
+<div class="relative z-10 px-container-margin py-stack-lg max-w-7xl mx-auto space-y-section-gap">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-stack-md border-b border-surface-variant pb-stack-md">
+<div>
+<h2 class="font-headline-xl text-headline-xl text-on-background tracking-tight">Panel de Control</h2>
+<p class="font-body-md text-body-md text-outline mt-2">Visión general y gestión de sala para hoy.</p>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-high px-4 py-2 rounded-full border border-surface-variant">
+<span class="material-symbols-outlined text-secondary text-[18px]">calendar_today</span>
+<span class="font-label-bold text-label-bold text-on-surface">14 de Octubre, 2023</span>
+</div>
+</div>
+<!-- Bento Stats Overview -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-stack-md">
+<!-- Stat Card 1: Reservas de Hoy -->
+<div class="bg-surface-container-high rounded-xl p-stack-lg shadow-ambient border border-surface-variant relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-24 h-24 bg-secondary/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+<p class="font-caption text-caption text-outline uppercase tracking-wider mb-2 relative z-10">Reservas de Hoy</p>
+<div class="flex items-baseline gap-2 relative z-10">
+<span class="font-display-lg text-display-lg text-secondary">42</span>
+<span class="font-body-md text-body-md text-on-surface-variant">mesas</span>
+</div>
+</div>
+<!-- Stat Card 2: Comensales -->
+<div class="bg-surface-container-high rounded-xl p-stack-lg shadow-ambient border border-surface-variant relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-24 h-24 bg-tertiary/5 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+<p class="font-caption text-caption text-outline uppercase tracking-wider mb-2 relative z-10">Total Comensales</p>
+<div class="flex items-baseline gap-2 relative z-10">
+<span class="font-display-lg text-display-lg text-on-surface">156</span>
+<span class="font-body-md text-body-md text-on-surface-variant">personas</span>
+</div>
+</div>
+<!-- Stat Card 3: Ocupación (Visual Indicator) -->
+<div class="bg-surface-container-high rounded-xl p-stack-lg shadow-ambient border border-surface-variant flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<p class="font-caption text-caption text-outline uppercase tracking-wider">Ocupación Estimada</p>
+<span class="font-title-md text-title-md text-secondary">85%</span>
+</div>
+<div class="w-full h-3 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-secondary-fixed to-secondary w-[85%] rounded-full shadow-[0_0_10px_rgba(255,87,26,0.5)]"></div>
+</div>
+<p class="font-caption text-caption text-on-surface-variant mt-2 text-right">Alta demanda en turno cena</p>
+</div>
+</section>
+<!-- Quick Links / Actions -->
+<section class="grid grid-cols-1 sm:grid-cols-3 gap-stack-md">
+<button class="bg-[#2A2A2A] hover:bg-[#333333] transition-colors duration-300 rounded-lg p-stack-md flex flex-col items-center justify-center gap-3 border border-[#333333] hover:border-outline shadow-ambient group cursor-pointer text-left w-full">
+<div class="w-12 h-12 rounded-full bg-surface-variant flex items-center justify-center group-hover:bg-surface-bright transition-colors">
+<span class="material-symbols-outlined text-on-surface text-[24px]">restaurant_menu</span>
+</div>
+<span class="font-label-bold text-label-bold text-on-surface">Gestionar Carta</span>
+</button>
+<button class="bg-[#2A2A2A] hover:bg-[#333333] transition-colors duration-300 rounded-lg p-stack-md flex flex-col items-center justify-center gap-3 border border-[#333333] hover:border-outline shadow-ambient group cursor-pointer text-left w-full">
+<div class="w-12 h-12 rounded-full bg-surface-variant flex items-center justify-center group-hover:bg-surface-bright transition-colors">
+<span class="material-symbols-outlined text-on-surface text-[24px]">list_alt</span>
+</div>
+<span class="font-label-bold text-label-bold text-on-surface">Ver todas las Reservas</span>
+</button>
+<button class="bg-[#2A2A2A] hover:bg-[#333333] transition-colors duration-300 rounded-lg p-stack-md flex flex-col items-center justify-center gap-3 border border-[#333333] hover:border-outline shadow-ambient group cursor-pointer text-left w-full">
+<div class="w-12 h-12 rounded-full bg-surface-variant flex items-center justify-center group-hover:bg-surface-bright transition-colors">
+<span class="material-symbols-outlined text-on-surface text-[24px]">tune</span>
+</div>
+<span class="font-label-bold text-label-bold text-on-surface">Ajustes</span>
+</button>
+</section>
+<!-- Upcoming Reservations Table -->
+<section class="bg-surface-container border border-[#333333] rounded-xl overflow-hidden shadow-ambient">
+<div class="px-stack-lg py-stack-md border-b border-[#333333] flex justify-between items-center bg-surface-container-high">
+<h3 class="font-title-md text-title-md text-on-surface">Próximas Reservas</h3>
+<button class="text-secondary hover:text-secondary-fixed transition-colors font-label-bold text-label-bold flex items-center gap-1">
+                        Ver todas <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse min-w-[600px]">
+<thead>
+<tr class="bg-surface-container border-b border-[#333333]">
+<th class="font-caption text-caption text-outline uppercase px-stack-lg py-stack-md font-medium tracking-wider">Hora</th>
+<th class="font-caption text-caption text-outline uppercase px-stack-lg py-stack-md font-medium tracking-wider">Nombre</th>
+<th class="font-caption text-caption text-outline uppercase px-stack-lg py-stack-md font-medium tracking-wider">Pax</th>
+<th class="font-caption text-caption text-outline uppercase px-stack-lg py-stack-md font-medium tracking-wider">Mesa</th>
+<th class="font-caption text-caption text-outline uppercase px-stack-lg py-stack-md font-medium tracking-wider">Estado</th>
+<th class="font-caption text-caption text-outline uppercase px-stack-lg py-stack-md font-medium tracking-wider text-right">Acción</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface">
+<tr class="admin-table-row border-b border-[#333333] transition-colors cursor-pointer">
+<td class="px-stack-lg py-stack-md whitespace-nowrap">20:00</td>
+<td class="px-stack-lg py-stack-md font-medium">Familia García</td>
+<td class="px-stack-lg py-stack-md text-on-surface-variant">4</td>
+<td class="px-stack-lg py-stack-md">M-12</td>
+<td class="px-stack-lg py-stack-md">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-caption text-caption bg-secondary-container/20 text-secondary-fixed border border-secondary-container/30">
+                                        Confirmed
+                                    </span>
+</td>
+<td class="px-stack-lg py-stack-md text-right">
+<button class="text-outline hover:text-secondary transition-colors p-1"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</td>
+</tr>
+<tr class="admin-table-row border-b border-[#333333] transition-colors cursor-pointer">
+<td class="px-stack-lg py-stack-md whitespace-nowrap">20:15</td>
+<td class="px-stack-lg py-stack-md font-medium">Elena Rodríguez</td>
+<td class="px-stack-lg py-stack-md text-on-surface-variant">2</td>
+<td class="px-stack-lg py-stack-md">M-04</td>
+<td class="px-stack-lg py-stack-md">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-caption text-caption bg-surface-bright text-on-surface border border-outline-variant">
+                                        Pending
+                                    </span>
+</td>
+<td class="px-stack-lg py-stack-md text-right">
+<button class="text-outline hover:text-secondary transition-colors p-1"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</td>
+</tr>
+<tr class="admin-table-row border-b border-[#333333] transition-colors cursor-pointer opacity-60">
+<td class="px-stack-lg py-stack-md whitespace-nowrap">20:30</td>
+<td class="px-stack-lg py-stack-md font-medium line-through decoration-outline">Grupo Aniversario</td>
+<td class="px-stack-lg py-stack-md text-on-surface-variant">8</td>
+<td class="px-stack-lg py-stack-md">-</td>
+<td class="px-stack-lg py-stack-md">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-caption text-caption bg-error/10 text-error border border-error/20">
+                                        Cancelled
+                                    </span>
+</td>
+<td class="px-stack-lg py-stack-md text-right">
+<button class="text-outline hover:text-secondary transition-colors p-1"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</td>
+</tr>
+<tr class="admin-table-row transition-colors cursor-pointer">
+<td class="px-stack-lg py-stack-md whitespace-nowrap">21:00</td>
+<td class="px-stack-lg py-stack-md font-medium">Carlos Mendoza</td>
+<td class="px-stack-lg py-stack-md text-on-surface-variant">2</td>
+<td class="px-stack-lg py-stack-md">M-07 (VIP)</td>
+<td class="px-stack-lg py-stack-md">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-caption text-caption bg-secondary-container/20 text-secondary-fixed border border-secondary-container/30">
+                                        Confirmed
+                                    </span>
+</td>
+<td class="px-stack-lg py-stack-md text-right">
+<button class="text-outline hover:text-secondary transition-colors p-1"><span class="material-symbols-outlined text-[20px]">more_vert</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Bottom Spacer to ensure scrolling doesn't cut off -->
+<div class="h-12 w-full"></div>
+</div>
+</main>
+</body></html>
