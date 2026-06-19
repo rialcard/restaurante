@@ -301,6 +301,16 @@ export default function AdminReservationsPage() {
                     </div>
                   )}
 
+                  {selected.notas_admin && (
+                    <div className="bg-blue-500/10 border border-blue-500/30 rounded-xl p-4">
+                      <h3 className="font-display font-bold text-label-bold uppercase tracking-wider mb-2 flex items-center gap-2" style={{color:'#5b8cff'}}>
+                        <span className="icon text-lg">chat</span>
+                        Comentario del restaurante
+                      </h3>
+                      <p className="text-body-md text-on-surface font-body">{selected.notas_admin}</p>
+                    </div>
+                  )}
+
                   {selected.estado !== 'cancelada' && (
                     <div className="border-t border-outline-variant/30 pt-4 flex flex-col gap-2">
                       <button
