@@ -1,7 +1,13 @@
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
+import { SMTPClient } from 'https://deno.land/x/denomailer@1.6.0/mod.ts'
 
-const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY')
-const FROM_EMAIL = 'Estan Burger <reservas@estandartecnologia.com>'
+// Configuración SMTP de Mailcaw (definida en los Secrets de la Edge Function)
+const SMTP_HOST = Deno.env.get('SMTP_HOST') || 'mail.estandartecnologia.com'
+const SMTP_PORT = Number(Deno.env.get('SMTP_PORT') || '465')
+const SMTP_USER = Deno.env.get('SMTP_USER') || 'restaurante@estandartecnologia.com'
+const SMTP_PASS = Deno.env.get('SMTP_PASS') || ''
+const FROM_NAME = 'Estan Burger'
+const FROM_EMAIL = SMTP_USER
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -172,23 +178,25 @@ serve(async (req) => {
       notasAdmin: reserva.notas_admin,
     })
 
-    const res = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${RESEND_API_KEY}`,
+    const client = new SMTPClient({
+      connection: {
+        hostname: SMTP_HOST,
+        port: SMTP_PORT,
+        tls: SMTP_PORT === 465,
+        auth: { username: SMTP_USER, password: SMTP_PASS },
       },
-      body: JSON.stringify({
-        from: FROM_EMAIL,
-        to: [emailCliente],
-        subject: asuntos[reserva.estado] || 'Actualización de tu reserva · Estan Burger',
-        html,
-      }),
     })
 
-    const data = await res.json()
-    return new Response(JSON.stringify(data), {
-      status: res.status,
+    await client.send({
+      from: `${FROM_NAME} <${FROM_EMAIL}>`,
+      to: emailCliente,
+      subject: asuntos[reserva.estado] || 'Actualización de tu reserva · Estan Burger',
+      html,
+    })
+    await client.close()
+
+    return new Response(JSON.stringify({ ok: true }), {
+      status: 200,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   } catch (err) {
