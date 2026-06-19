@@ -10,7 +10,9 @@ export default function ReservationForm({ onCreated }) {
   const { franjas, crearReserva, getDisponibilidadPorFranjas } = useReservations()
   const { showToast } = useToast()
 
-  const [fecha, setFecha] = useState('')
+  const today = new Date()
+  const todayIso = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`
+  const [fecha, setFecha] = useState(todayIso)
   const [franjaId, setFranjaId] = useState('')
   const [numComensales, setNumComensales] = useState(2)
   const [notas, setNotas] = useState('')
@@ -45,7 +47,9 @@ export default function ReservationForm({ onCreated }) {
     try {
       const reserva = await crearReserva({ fecha, franja_horaria_id: franjaId, num_comensales: numComensales, notas: notas.trim() || null })
       showToast('¡Reserva creada correctamente!', 'success')
-      setFecha(''); setFranjaId(''); setNumComensales(2); setNotas(''); setDisponibilidad({})
+      const t = new Date()
+      const iso = `${t.getFullYear()}-${String(t.getMonth() + 1).padStart(2, '0')}-${String(t.getDate()).padStart(2, '0')}`
+      setFecha(iso); setFranjaId(''); setNumComensales(2); setNotas(''); setDisponibilidad({})
       if (onCreated) onCreated(reserva)
     } catch (err) {
       if (err.message?.includes('No hay disponibilidad')) {
