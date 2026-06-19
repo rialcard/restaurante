@@ -35,7 +35,9 @@ export function useAdminReservations() {
       .single()
     if (e) throw e
     setReservas(prev => prev.map(r => r.id === id ? data : r))
-    if (cambios.estado && cambios.estado !== reservaAnterior?.estado) {
+    const estadoCambio = cambios.estado && cambios.estado !== reservaAnterior?.estado
+    const hayComentarioAdmin = cambios.notas_admin !== undefined && cambios.notas_admin !== (reservaAnterior?.notas_admin || '')
+    if (estadoCambio || hayComentarioAdmin) {
       enviarEmailEstadoReserva(data).catch(() => {})
     }
     return data

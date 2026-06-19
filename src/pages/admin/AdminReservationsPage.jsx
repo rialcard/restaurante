@@ -21,7 +21,7 @@ export default function AdminReservationsPage() {
     setEditForm({
       estado: reserva.estado,
       mesa_asignada: reserva.mesa_asignada || '',
-      notas: reserva.notas || '',
+      notas_admin: reserva.notas_admin || '',
       llegada_confirmada: reserva.llegada_confirmada,
     })
     setEditarModal(reserva)
@@ -353,13 +353,23 @@ export default function AdminReservationsPage() {
               onChange={e => setEditForm(f => ({ ...f, mesa_asignada: e.target.value }))}
             />
           </div>
+          {editarModal?.notas && (
+            <div className="bg-surface-variant/40 border border-outline-variant/30 rounded-xl p-3">
+              <p className="text-caption text-on-surface-variant uppercase tracking-wider font-bold mb-1 flex items-center gap-1">
+                <span className="icon text-sm">sticky_note_2</span>
+                Nota del cliente
+              </p>
+              <p className="text-body-md text-on-surface font-body italic">{editarModal.notas}</p>
+            </div>
+          )}
           <div>
-            <label className="field-label">Notas</label>
+            <label className="field-label">Comentario para el cliente</label>
             <textarea
               className="input-field resize-none"
               rows={3}
-              value={editForm.notas || ''}
-              onChange={e => setEditForm(f => ({ ...f, notas: e.target.value }))}
+              placeholder="Este mensaje se enviará al cliente por email..."
+              value={editForm.notas_admin || ''}
+              onChange={e => setEditForm(f => ({ ...f, notas_admin: e.target.value }))}
             />
           </div>
           <div className="flex items-center gap-3">

@@ -21,7 +21,7 @@ function formatearHora(hora: string): string {
   return String(hora || '').slice(0, 5)
 }
 
-function buildEmailHtml({ nombreCliente, fecha, hora, numComensales, mesaAsignada, estado, notas }: {
+function buildEmailHtml({ nombreCliente, fecha, hora, numComensales, mesaAsignada, estado, notas, notasAdmin }: {
   nombreCliente: string
   fecha: string
   hora: string
@@ -29,6 +29,7 @@ function buildEmailHtml({ nombreCliente, fecha, hora, numComensales, mesaAsignad
   mesaAsignada?: string
   estado: string
   notas?: string
+  notasAdmin?: string
 }): string {
   const colores: Record<string, { fondo: string; borde: string; texto: string; etiqueta: string; icono: string }> = {
     confirmada: { fondo: '#1a3a1a', borde: '#4caf50', texto: '#81c784', etiqueta: 'CONFIRMADA', icono: '✅' },
@@ -115,6 +116,15 @@ function buildEmailHtml({ nombreCliente, fecha, hora, numComensales, mesaAsignad
               </div>
             </td>
           </tr>` : ''}
+          ${notasAdmin ? `
+          <tr>
+            <td style="padding:20px 40px 0;">
+              <div style="background-color:#1a1e2a;border-left:3px solid #5b8cff;border-radius:0 8px 8px 0;padding:16px 20px;">
+                <p style="margin:0 0 6px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#5b8cff;">💬 Mensaje del restaurante</p>
+                <p style="margin:0;font-size:14px;line-height:1.5;color:#c0c8e0;">${notasAdmin}</p>
+              </div>
+            </td>
+          </tr>` : ''}
           <tr>
             <td style="padding:32px 40px 0;">
               <div style="height:1px;background-color:#2a2a2a;"></div>
@@ -165,6 +175,7 @@ serve(async (req) => {
       mesaAsignada: reserva.mesa_asignada,
       estado: reserva.estado,
       notas: reserva.notas,
+      notasAdmin: reserva.notas_admin,
     })
 
     const res = await fetch('https://api.resend.com/emails', {
