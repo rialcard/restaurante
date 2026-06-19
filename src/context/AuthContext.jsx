@@ -50,11 +50,13 @@ export function AuthProvider({ children }) {
   }
 
   async function signUp(email, password, nombreCompleto) {
+    const siteUrl = import.meta.env.VITE_SITE_URL || window.location.origin
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
         data: { nombre_completo: nombreCompleto },
+        emailRedirectTo: `${siteUrl}/acceso`,
       },
     })
     if (error) throw error

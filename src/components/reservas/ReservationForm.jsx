@@ -22,11 +22,19 @@ export default function ReservationForm({ onCreated }) {
     if (!fecha || !franjas.length) return
     setCargandoDisp(true)
     setFranjaId('')
+    setDisponibilidad({})
     getDisponibilidadPorFranjas(fecha, numComensales).then(disp => {
       setDisponibilidad(disp)
       setCargandoDisp(false)
     })
-  }, [fecha, numComensales, franjas])
+  }, [fecha, franjas])
+
+  useEffect(() => {
+    if (!fecha || !franjas.length) return
+    getDisponibilidadPorFranjas(fecha, numComensales).then(disp => {
+      setDisponibilidad(disp)
+    })
+  }, [numComensales])
 
   async function handleSubmit(e) {
     e.preventDefault()

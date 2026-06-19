@@ -7,7 +7,7 @@ import ConfirmModal from '../../components/ui/ConfirmModal'
 import Spinner from '../../components/ui/Spinner'
 
 export default function ReservationsPage() {
-  const { reservas, loading, cancelarReserva } = useReservations()
+  const { reservas, loading, cancelarReserva, refetch } = useReservations()
   const { showToast } = useToast()
   const [reservaACancelar, setReservaACancelar] = useState(null)
   const [cancelando, setCancelando] = useState(false)
@@ -41,7 +41,7 @@ export default function ReservationsPage() {
             <span className="icon text-2xl text-secondary-container">add_circle</span>
             Haz una Reserva
           </h2>
-          <ReservationForm />
+          <ReservationForm onCreated={refetch} />
         </div>
 
         {/* Lista de reservas */}

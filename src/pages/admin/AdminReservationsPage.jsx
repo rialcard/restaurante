@@ -122,62 +122,83 @@ export default function AdminReservationsPage() {
               <p className="text-body-md text-on-surface-variant font-body">No hay reservas que coincidan con los filtros.</p>
             </div>
           ) : (
-            reservas.map(r => (
-              <div
-                key={r.id}
-                onClick={() => setSelectedId(r.id)}
-                className={`card-elevated overflow-hidden cursor-pointer transition-all duration-200 hover:-translate-y-1 ${selectedId === r.id ? 'border-secondary-container shadow-glow' : ''} ${r.estado === 'cancelada' ? 'opacity-70' : ''}`}
-              >
-                <div className="p-4">
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex items-center gap-3">
-                      <div className="bg-surface-variant rounded-lg px-3 py-2 text-center min-w-[56px]">
-                        <span className="font-display font-bold text-label-bold text-secondary-container">
+            <div className="card-elevated overflow-hidden">
+              <table className="w-full text-sm font-body">
+                <thead>
+                  <tr className="border-b border-outline-variant/30 bg-surface-variant/40">
+                    <th className="text-left px-3 py-2 text-caption text-on-surface-variant uppercase tracking-wider font-bold">Hora</th>
+                    <th className="text-left px-3 py-2 text-caption text-on-surface-variant uppercase tracking-wider font-bold">Fecha</th>
+                    <th className="text-left px-3 py-2 text-caption text-on-surface-variant uppercase tracking-wider font-bold">Cliente</th>
+                    <th className="text-center px-3 py-2 text-caption text-on-surface-variant uppercase tracking-wider font-bold">Pax</th>
+                    <th className="text-left px-3 py-2 text-caption text-on-surface-variant uppercase tracking-wider font-bold hidden md:table-cell">Mesa</th>
+                    <th className="text-left px-3 py-2 text-caption text-on-surface-variant uppercase tracking-wider font-bold">Estado</th>
+                    <th className="text-center px-3 py-2 text-caption text-on-surface-variant uppercase tracking-wider font-bold">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {reservas.map((r, i) => (
+                    <tr
+                      key={r.id}
+                      onClick={() => setSelectedId(r.id)}
+                      className={`cursor-pointer border-b border-outline-variant/20 transition-colors duration-150 hover:bg-surface-variant/30
+                        ${selectedId === r.id ? 'bg-secondary-container/10' : i % 2 === 0 ? '' : 'bg-surface-container/30'}
+                        ${r.estado === 'cancelada' ? 'opacity-60' : ''}`}
+                    >
+                      <td className="px-3 py-2">
+                        <span className="font-display font-bold text-secondary-container">
                           {String(r.franja_horaria?.hora || '--').slice(0, 5)}
                         </span>
-                      </div>
-                      <div>
-                        <p className={`font-display font-bold text-label-bold ${r.estado === 'cancelada' ? 'line-through text-on-surface-variant' : 'text-on-surface'}`}>
+                      </td>
+                      <td className="px-3 py-2 text-on-surface-variant whitespace-nowrap">
+                        {new Date(r.fecha + 'T00:00:00').toLocaleDateString('es-ES', { weekday: 'short', day: 'numeric', month: 'short' })}
+                      </td>
+                      <td className="px-3 py-2">
+                        <p className={`font-medium truncate max-w-[140px] ${r.estado === 'cancelada' ? 'line-through text-on-surface-variant' : 'text-on-surface'}`}>
                           {r.cliente?.nombre_completo || r.cliente?.email || 'Desconocido'}
                         </p>
-                        <p className="text-caption text-on-surface-variant font-body flex items-center gap-1 flex-wrap">
-                          <span>{r.num_comensales} Pax</span>
-                          {r.mesa_asignada && <span>· Mesa {r.mesa_asignada}</span>}
-                          {r.llegada_confirmada && <span>· ✓ Llegó</span>}
-                          {r.notas && (
-                            <span className="inline-flex items-center gap-0.5 text-secondary-container" title={r.notas}>
-                              · <span className="icon text-sm">sticky_note_2</span> Nota
-                            </span>
-                          )}
-                        </p>
-                        <p className="text-caption text-on-surface-variant font-body">
-                          {new Date(r.fecha + 'T00:00:00').toLocaleDateString('es-ES', { weekday: 'short', day: 'numeric', month: 'short' })}
-                        </p>
-                      </div>
-                    </div>
-                    <Badge estado={r.estado} />
-                  </div>
-                  {r.estado !== 'cancelada' && (
-                    <div className="border-t border-outline-variant/30 mt-3 pt-3 flex gap-2">
-                      <button
-                        onClick={e => { e.stopPropagation(); abrirEditar(r) }}
-                        className="btn-primary py-1.5 px-3 text-sm flex-1"
-                      >
-                        <span className="icon text-base">edit</span>
-                        Modificar
-                      </button>
-                      <button
-                        onClick={e => { e.stopPropagation(); setCancelarModal(r) }}
-                        className="btn-danger py-1.5 px-3 text-sm"
-                      >
-                        <span className="icon text-base">cancel</span>
-                        Cancelar
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))
+                        {r.notas && (
+                          <span className="icon text-sm text-secondary-container" title={r.notas}>sticky_note_2</span>
+                        )}
+                      </td>
+                      <td className="px-3 py-2 text-center text-on-surface">
+                        <span className="flex items-center justify-center gap-1">
+                          {r.num_comensales}
+                          {r.llegada_confirmada && <span className="icon text-sm text-secondary-container">check_circle</span>}
+                        </span>
+                      </td>
+                      <td className="px-3 py-2 text-on-surface-variant hidden md:table-cell">
+                        {r.mesa_asignada || <span className="text-outline">—</span>}
+                      </td>
+                      <td className="px-3 py-2">
+                        <Badge estado={r.estado} />
+                      </td>
+                      <td className="px-3 py-2">
+                        {r.estado !== 'cancelada' ? (
+                          <div className="flex items-center justify-center gap-1">
+                            <button
+                              onClick={e => { e.stopPropagation(); abrirEditar(r) }}
+                              className="p-1.5 rounded-lg bg-surface-variant hover:bg-secondary-container/20 text-on-surface-variant hover:text-secondary-container transition-colors"
+                              title="Modificar"
+                            >
+                              <span className="icon text-base">edit</span>
+                            </button>
+                            <button
+                              onClick={e => { e.stopPropagation(); setCancelarModal(r) }}
+                              className="p-1.5 rounded-lg bg-surface-variant hover:bg-error/20 text-on-surface-variant hover:text-error transition-colors"
+                              title="Cancelar"
+                            >
+                              <span className="icon text-base">cancel</span>
+                            </button>
+                          </div>
+                        ) : (
+                          <span className="text-outline text-center block">—</span>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           )}
         </div>
 
